@@ -25,12 +25,12 @@ public class StudentServiceImpl implements StudentService {
     private final ModelMapper modelMapper;
     @Override
     public StudentDto createStudent(StudentDto studentDto) {
-        Student student = studentMapper.INSTANCE.studentDtotoStudent(studentDto);
+        Student student = studentMapper.studentDtotoStudent(studentDto);
         student.getCurrentlyReadingBooks()
                 .forEach(book -> book.setStudents(List.of(student)));
         List<Book>bookList = student.getCurrentlyReadingBooks();
         student.setCurrentlyReadingBooks(bookList);
-        return studentMapper.INSTANCE.studentToStudentDto(studentRepository.save(student));
+        return studentMapper.studentToStudentDto(studentRepository.save(student));
     }
 
     @Override

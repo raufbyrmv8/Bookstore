@@ -30,26 +30,26 @@ public class AuthorServiceImpl implements AuthorService {
     private final ModelMapper modelMapper;
     @Override
     public AuthorDto createBook(AuthorDto authorDto) {
-        Author author = authorMapper.INSTANCE.authorDtoToAuthor(authorDto);
+        Author author = authorMapper.authorDtoToAuthor(authorDto);
         author.getBooks()
                 .forEach(book -> book.setAuthor(author));
         List<Book>books = author.getBooks();
         author.setBooks(books);
-        return authorMapper.INSTANCE.authorToAuthorDto(authorRepository.save(author));
+        return authorMapper.authorToAuthorDto(authorRepository.save(author));
     }
 
     @Override
     public AuthorDto findByBook(String name) {
         Author author = authorRepository.findByName(name)
                 .orElseThrow(() -> new AuthorNotFoundException(ErrorCode.AUTHOR_NOT_FOUND_0001, name));
-        return authorMapper.INSTANCE.authorToAuthorDto(author);
+        return authorMapper.authorToAuthorDto(author);
     }
 
     @Override
     public AuthorDto findById(long findById) {
         Author author = authorRepository.findById(findById)
                 .orElseThrow(() -> new AuthorNotFoundException(ErrorCode.AUTHOR_NOT_FOUND_0001, String.valueOf(findById)));
-        return authorMapper.INSTANCE.authorToAuthorDto(author);
+        return authorMapper.authorToAuthorDto(author);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class AuthorServiceImpl implements AuthorService {
         Author author = authorRepository.findById(id)
                 .orElseThrow(() -> new AuthorNotFoundException(ErrorCode.AUTHOR_NOT_FOUND_0001, String.valueOf(id)));
         modelMapper.map(authorDto,author);
-        return authorMapper.INSTANCE.authorToAuthorDto(authorRepository.save(author));
+        return authorMapper.authorToAuthorDto(authorRepository.save(author));
     }
 
     @Override
@@ -93,11 +93,11 @@ public class AuthorServiceImpl implements AuthorService {
     }
     @Override
     public SubscribedAuthorDto subscribedSave(SubscribedAuthorDto subscribedAuthorDto) {
-        Author author = authorMapper.INSTANCE.subscribedAuthorDtoToAuthor(subscribedAuthorDto);
+        Author author = authorMapper.subscribedAuthorDtoToAuthor(subscribedAuthorDto);
         author.getSubscribedStudents()
                 .forEach(student -> student.setSubscribedStudents(List.of(author)));
         List<Student>studentList = author.getSubscribedStudents();
         author.setSubscribedStudents(studentList);
-        return authorMapper.INSTANCE.authorToSubscribedAuthorDto(authorRepository.save(author));
+        return authorMapper.authorToSubscribedAuthorDto(authorRepository.save(author));
     }
 }

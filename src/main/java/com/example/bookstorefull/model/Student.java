@@ -1,10 +1,8 @@
 package com.example.bookstorefull.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
@@ -12,6 +10,7 @@ import java.util.List;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
+@Builder
 @NoArgsConstructor
 @Entity
 public class Student {
@@ -28,5 +27,6 @@ public class Student {
     List<Book>currentlyReadingBooks;
 
     @ManyToMany(mappedBy = "subscribedStudents")
+    @JsonBackReference
     List<Author>subscribedStudents;
 }

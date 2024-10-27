@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 import java.util.List;
 
 @Data
+@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,7 +24,6 @@ public class Book {
     List<Student>students;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "author_id", referencedColumnName = "id")
     Author author;
 }
