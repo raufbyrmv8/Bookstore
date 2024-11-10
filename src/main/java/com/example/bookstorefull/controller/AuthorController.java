@@ -37,11 +37,10 @@ public class AuthorController {
         return authorService.updateAuthor(id,authorDto);
     }
 
-    @GetMapping("/{id}")
-    public AuthorDto getAuthor(@PathVariable long id){
+    @GetMapping("/get/{id}")
+    public AuthorDto findAuthorById(@PathVariable long id){
         return authorService.findById(id);
     }
-
 
     @GetMapping("/find-all")
     public List<AuthorDto> findAll(){

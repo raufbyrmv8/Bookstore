@@ -25,7 +25,7 @@ public class SecurityConfig {
         httpSecurity.cors(AbstractHttpConfigurer::disable);
        httpSecurity.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,"/author/find-all").permitAll());
-        httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,"/author/{id}").permitAll());
+        httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,"/author/get/{id}").permitAll());
         httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,"/author/find-all/{name}").permitAll());
         httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,"/student/find-all").permitAll());
         httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET,"/test/hello").permitAll());
