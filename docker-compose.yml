@@ -14,7 +14,13 @@ services:
       MYSQL_ROOT_PASSWORD: 'password'
       MYSQL_PASSWORD: 'password'
       MYSQL_DATABASE: 'BookStoreFull'
-
+  redis:
+    container_name: redis-BookStore
+    image: redis
+    ports:
+      - "6380:6379"
+    volumes:
+      - ms_database:/var/lib/redis
 
 
 volumes:
